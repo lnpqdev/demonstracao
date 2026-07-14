@@ -1,0 +1,11 @@
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\bin\Debug\net8.0\BffDemo.Domain.deps.json
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\bin\Debug\net8.0\BffDemo.Domain.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\bin\Debug\net8.0\BffDemo.Domain.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.AssemblyInfoInputs.cache
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.AssemblyInfo.cs
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.csproj.CoreCompileInputs.cache
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\refint\BffDemo.Domain.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\BffDemo.Domain.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Domain\obj\Debug\net8.0\ref\BffDemo.Domain.dll

@@ -1,0 +1,17 @@
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Infrastructure.deps.json
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Infrastructure.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Infrastructure.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Application.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Domain.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Application.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\bin\Debug\net8.0\BffDemo.Domain.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.AssemblyInfo.cs
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo..E1498DEF.Up2Date
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\refint\BffDemo.Infrastructure.dll
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\BffDemo.Infrastructure.pdb
+C:\Users\lunpq\Documents\Claude\BffDemo\BffDemo.Infrastructure\obj\Debug\net8.0\ref\BffDemo.Infrastructure.dll
