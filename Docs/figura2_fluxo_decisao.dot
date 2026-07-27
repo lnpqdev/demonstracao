@@ -1,0 +1,47 @@
+/*
+ * Figura 2 — Fluxo de Decisão da Pré-Contratação de Fundos
+ * Da vitrine até a conclusão
+ *
+ * Como editar:
+ *  - Este é um arquivo de texto no formato Graphviz DOT.
+ *  - Para gerar a imagem: dot -Tpng figura2_fluxo_decisao.dot -o figura2_fluxo_decisao.png
+ *  - Também abre em editores online, ex.: https://dreampuf.github.io/GraphvizOnline/
+ *  - Basta editar rótulos, cores (fillcolor) ou adicionar novos nós/arestas e re-renderizar.
+ */
+digraph Figura2_FluxoDecisao {
+    rankdir=TB;
+    bgcolor="transparent";
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=12];
+    edge [fontname="Helvetica", fontsize=10, color="#555555"];
+
+    inicio [label="Cliente acessa a\nVitrine de Fundos", shape=ellipse, style=filled, fillcolor="#cfe2ff", color="#4a76c7"];
+    dec1 [label="Possui perfil de\ninvestimento OU\ntermo já assinado?", shape=diamond, style=filled, fillcolor="#fff2b2", color="#c7a41f"];
+    semPendencia [label="Exibe vitrine\n(sem pendência)", shape=box, style="rounded,filled", fillcolor="#d4edda", color="#4a9c5d"];
+    comPendencia [label="Exibe vitrine +\nbanner de pendência\n(seleção segue liberada)", shape=box, style="rounded,filled", fillcolor="#f8d7da", color="#c7554a"];
+    selecionaProduto [label="Cliente seleciona\num produto", shape=box, style="rounded,filled", fillcolor="#cfe2ff", color="#4a76c7"];
+    dec2 [label="Produto possui termo\npré-determinado?", shape=diamond, style=filled, fillcolor="#fff2b2", color="#c7a41f"];
+    comTermo [label="Fluxo Transacional\n+ step de assinatura do\ntermo específico do produto", shape=box, style="rounded,filled", fillcolor="#cfe2ff", color="#4a76c7"];
+    semTermo [label="Fluxo Transacional\n+ step genérico de\nperfil / termo", shape=box, style="rounded,filled", fillcolor="#cfe2ff", color="#4a76c7"];
+    coleta [label="Step de coleta:\nperfil do investidor / TIQ-TIP /\nTDI / seguir sem perfil", shape=box, style="rounded,filled", fillcolor="#e3d4f5", color="#8a5cc7"];
+    simulacao [label="Simulação do produto", shape=box, style="rounded,filled", fillcolor="#cfe2ff", color="#4a76c7"];
+    dec3 [label="Simulação gera\ndesenquadramento de\nperfil da empresa?", shape=diamond, style=filled, fillcolor="#fff2b2", color="#c7a41f"];
+    termoDesenq [label="Termo de ciência\nde desenquadramento", shape=box, style="rounded,filled", fillcolor="#ffdfb3", color="#c77a1f"];
+    conclui [label="Conclui a\ncontratação", shape=ellipse, style=filled, fillcolor="#d4edda", color="#4a9c5d"];
+
+    inicio -> dec1;
+    dec1 -> semPendencia [label="Sim"];
+    dec1 -> comPendencia [label="Não"];
+    semPendencia -> selecionaProduto;
+    comPendencia -> selecionaProduto;
+    selecionaProduto -> dec2;
+    dec2 -> comTermo [label="Sim"];
+    dec2 -> semTermo [label="Não"];
+    comTermo -> coleta;
+    semTermo -> coleta;
+    coleta -> simulacao;
+    simulacao -> dec3;
+    dec3 -> termoDesenq [label="Sim"];
+    dec3 -> conclui [label="Não"];
+    termoDesenq -> conclui;
+}

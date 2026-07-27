@@ -1,0 +1,106 @@
+/*
+ * Figura 1 v2 — Visão de Componentes com Motor decomposto por etapa/endpoint
+ * Motor de Orquestração de Pré-Contratação de Fundos
+ *
+ * Diferença em relação a figura1_componentes.dot (v0.2):
+ *  - O nó único "Motor de Orquestração" foi decomposto nos endpoints
+ *    definidos em especificacao_endpoints_motor_orquestracao_v1.0.md,
+ *    cada um com aresta apenas para a(s) API(s) que efetivamente consulta.
+ *
+ * Como editar:
+ *  - Arquivo de texto no formato Graphviz DOT.
+ *  - Gerar imagem: dot -Tpng figura1_componentes_v2.dot -o figura1_componentes_v2.png
+ *  - Também abre em https://dreampuf.github.io/GraphvizOnline/
+ */
+digraph Figura1_Componentes_V2 {
+    rankdir=TB;
+    bgcolor="transparent";
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=11, style="rounded,filled"];
+    edge [fontname="Helvetica", fontsize=9, color="#555555"];
+
+    Frontend [label="Frontend / Vitrine\n(Web / App)", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    BFF [label="BFF de Pré-Contratação", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    Fluxo [label="Fluxo Transacional\n(contratação / efetivação)", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    API2 [label="API 2\nContratação / Resgate\ne Termos", shape=box, fillcolor="#eeeeee", color="#999999"];
+
+    subgraph cluster_motor {
+        label="Motor de Orquestração de Pré-Contratação\n(decomposto por etapa / endpoint)";
+        style="rounded,dashed";
+        color="#c77a1f";
+        fontname="Helvetica";
+        fontsize=11;
+        node [shape=box, style="rounded,filled,bold", fillcolor="#ffe1b3", color="#c77a1f", penwidth=1.5];
+
+        Ep1 [label="1. GET\ncheckist-inicial"];
+        Ep2 [label="2. POST\nselecao-produto"];
+        Ep3 [label="3. POST\nsteps/perfil-termo"];
+        Ep4 [label="4. POST\nsimulacao"];
+        Ep5 [label="5. POST\nvalidacao-\nenquadramento"];
+        Ep6 [label="6. POST\ntermo-\ndesenquadramento"];
+        Ep7 [label="7. POST\nconcluir"];
+        EpEv [label="POST eventos\n(transversal)", style="rounded,filled,dashed", fillcolor="#fff2dc"];
+
+        { rank=same; Ep1; Ep2; Ep3; Ep4; Ep5; Ep6; Ep7; }
+
+        Ep1 -> Ep2 [style=invis];
+        Ep2 -> Ep3 [style=invis];
+        Ep3 -> Ep4 [style=invis];
+        Ep4 -> Ep5 [style=invis];
+        Ep5 -> Ep6 [style=invis];
+        Ep6 -> Ep7 [style=invis];
+    }
+
+    subgraph cluster_apis {
+        label="APIs de domínio (times parceiros)";
+        style="dashed";
+        color="#999999";
+        fontname="Helvetica";
+        fontsize=11;
+        node [shape=box, fillcolor="#eeeeee", color="#999999", style="rounded,filled"];
+
+        API1 [label="API 1\nFundos de Investimento"];
+        API3 [label="API 3\nTermos / Suitability"];
+        API4 [label="API 4\nSuitability / Perfil"];
+        API5 [label="API 5\nCVM50 / Entes Públicos\ne Elegibilidade"];
+        API6 [label="API 6\nContas e Saldos"];
+        API7 [label="API 7\nVitrine / Catálogo"];
+        API8 [label="API 8\nDados Cadastrais"];
+
+        { rank=same; API4; API3; API8; API5; API7; API1; API6; }
+    }
+
+    Frontend -> BFF;
+    BFF -> Fluxo [label="direciona com\nsteps definidos"];
+    BFF -> Ep1 [label="checklist"];
+    BFF -> Ep2 [label="seleção"];
+    Fluxo -> Ep3;
+    Fluxo -> Ep4;
+    Fluxo -> Ep5;
+    Fluxo -> Ep6;
+    Fluxo -> Ep7;
+    Fluxo -> EpEv [style=dashed];
+    Fluxo -> API2;
+    Ep7 -> API2 [label="cria/efetiva"];
+
+    Ep1 -> API4;
+    Ep1 -> API3;
+    Ep1 -> API8;
+    Ep1 -> API5;
+
+    Ep2 -> API7;
+    Ep2 -> API3;
+    Ep2 -> API1;
+
+    Ep3 -> API4;
+    Ep3 -> API3;
+
+    Ep4 -> API1;
+    Ep4 -> API6;
+
+    Ep5 -> API4;
+
+    Ep6 -> API3;
+
+    Ep7 -> API2;
+}

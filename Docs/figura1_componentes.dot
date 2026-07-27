@@ -1,0 +1,55 @@
+/*
+ * Figura 1 — Visão de Componentes
+ * Motor de Orquestração de Pré-Contratação de Fundos
+ *
+ * Como editar:
+ *  - Este é um arquivo de texto no formato Graphviz DOT.
+ *  - Para gerar a imagem: dot -Tpng figura1_componentes.dot -o figura1_componentes.png
+ *  - Também abre em editores online, ex.: https://dreampuf.github.io/GraphvizOnline/
+ *  - Basta editar rótulos, cores (fillcolor) ou adicionar novos nós/arestas e re-renderizar.
+ */
+digraph Figura1_Componentes {
+    rankdir=TB;
+    bgcolor="transparent";
+    fontname="Helvetica";
+    node [fontname="Helvetica", fontsize=12, style="rounded,filled"];
+    edge [fontname="Helvetica", fontsize=10, color="#555555"];
+
+    Frontend [label="Frontend / Vitrine\n(Web / App)", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    BFF [label="BFF de Pré-Contratação\n(orquestra a tela e\no motor de regras)", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    Fluxo [label="Fluxo Transacional\n(contratação / efetivação)", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    API2 [label="API 2\nContratação / Resgate\ne Termos", shape=box, fillcolor="#cfe2ff", color="#4a76c7"];
+    Motor [label="Motor de Orquestração de\nPré-Contratação\n(regras agnósticas de\nperfil / termo / cadastro)", shape=box, style="rounded,filled,bold", fillcolor="#ffe1b3", color="#c77a1f", penwidth=2];
+
+    subgraph cluster_apis {
+        label="APIs de domínio (times parceiros)";
+        style="dashed";
+        color="#999999";
+        fontname="Helvetica";
+        fontsize=11;
+        node [shape=box, fillcolor="#eeeeee", color="#999999", style="rounded,filled"];
+
+        API3 [label="API 3\nTermos / Suitability\n(persistência de termos)"];
+        API5 [label="API 5\nCVM50, Entes Públicos\ne Elegibilidade"];
+        API6 [label="API 6\nContas e Saldos"];
+        API7 [label="API 7\nVitrine / Catálogo\nde Produtos"];
+        API8 [label="API 8\nDados Cadastrais"];
+        API1 [label="API 1\nFundos de Investimento\n(posições, movimentos,\ndocumentos, elegibilidade)"];
+        API4 [label="API 4\nSuitability /\nEnquadramento de Perfil"];
+
+        { rank=same; API3; API5; API6; API7; API8; API1; API4; }
+    }
+
+    Frontend -> BFF;
+    BFF -> Fluxo [label="direciona com\nsteps definidos"];
+    BFF -> Motor [label="consulta pendências"];
+    Fluxo -> API2;
+    API2 -> API3 [label="assinatura"];
+    Motor -> API3 [label="status de termos"];
+    Motor -> API5;
+    Motor -> API6;
+    Motor -> API7;
+    Motor -> API8;
+    Motor -> API1;
+    Motor -> API4;
+}
