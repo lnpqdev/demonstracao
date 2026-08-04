@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Justificativa de serviços — Plataforma de Investimentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0B1D33; --navy-2:#13304F; --teal:#0E7C7B; --teal-soft:#E3F2F1;
+    --amber:#C77B12; --amber-soft:#FBF0DC; --rose:#A32B33; --rose-soft:#FAE7E7;
+    --ink:#12202E; --muted:#5A6B7B; --line:#DCE4EB; --paper:#F6F8FA; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.6}
+  header.top{background:var(--navy);color:#fff;padding:44px 32px 36px}
+  header.top .wrap{max-width:1180px;margin:0 auto}
+  h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,40px);
+    margin:0 0 8px;letter-spacing:-.02em}
+  header.top p{margin:0;color:#A9C0D6;max-width:70ch}
+  .tally{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .tally span{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 12px;border-radius:2px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#DCE9F5}
+  nav.jump{position:sticky;top:0;z-index:5;background:var(--white);border-bottom:1px solid var(--line);
+    padding:10px 32px;overflow-x:auto;white-space:nowrap}
+  nav.jump a{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);
+    text-decoration:none;margin-right:18px;border-bottom:2px solid transparent;padding-bottom:3px}
+  nav.jump a:hover,nav.jump a:focus{color:var(--navy);border-color:var(--teal);outline:none}
+  main{max-width:1180px;margin:0 auto;padding:36px 32px 80px}
+  .camada{margin:0 0 46px}
+  .camada h2{font-family:"Space Grotesk",sans-serif;font-size:19px;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:12px;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+  .camada-num{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--navy);color:#fff;
+    padding:4px 9px;border-radius:2px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:4px;margin-bottom:14px;overflow:hidden}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+    padding:16px 20px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#FBFCFD)}
+  .card-head h3{font-family:"Space Grotesk",sans-serif;font-size:17px;margin:0}
+  .sub{margin:2px 0 0;color:var(--muted);font-size:13px}
+  .badge{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 10px;border-radius:2px;white-space:nowrap;border:1px solid}
+  .b-obrigatorio{background:var(--rose-soft);color:var(--rose);border-color:#E8BFC1}
+  .b-condicional{background:var(--amber-soft);color:var(--amber);border-color:#EAD3A6}
+  .b-opcional{background:var(--teal-soft);color:var(--teal);border-color:#B9DEDC}
+  .b-externo{background:#EEF1F4;color:var(--muted);border-color:var(--line)}
+  .card-body{display:grid;grid-template-columns:330px 1fr;gap:0}
+  .diagram{padding:16px;border-right:1px solid var(--line);background:#FBFCFD;display:flex;
+    align-items:center;justify-content:center}
+  .diagram .mermaid{margin:0;width:100%;font-size:12px}
+  .prose{padding:16px 20px}
+  .prose p{margin:0 0 12px}
+  .prose p:last-child{margin-bottom:0}
+  .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:3px}
+  .custo{border-left:3px solid var(--amber);padding-left:12px;background:var(--amber-soft);
+    padding:10px 12px;border-radius:2px}
+  .custo span{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:3px}
+  footer{border-top:1px solid var(--line);padding:24px 32px;color:var(--muted);font-size:13px;
+    max-width:1180px;margin:0 auto}
+  @media (max-width:820px){
+    .card-body{grid-template-columns:1fr}
+    .diagram{border-right:none;border-bottom:1px solid var(--line)}
+    header.top,main,nav.jump,footer{padding-left:18px;padding-right:18px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Por que cada serviço está no desenho</h1>
+    <p>Plataforma de investimentos — serviço stateless de integração. Fase 1: Fundos. Cada item traz o motivo de estar
+       na arquitetura, o que quebra se for retirado e a alternativa possível. Documento complementar ao diagrama
+       <em>arquitetura-investimentos-aws-v5.drawio</em>.</p>
+    <div class="tally">
+      <span>15 obrigatórios</span>
+      <span>8 condicionais</span>
+      <span>5 opcionais</span>
+      <span>1 fora da AWS</span>
+      <span>29 itens no total</span>
+    </div>
+  </div>
+</header>
+<nav class="jump"><a href="#camada-2">2 — Borda</a><a href="#camada-3">3 — BFF</a><a href="#camada-4">4 — Roteamento interno</a><a href="#camada-5">5 — Aplicação</a><a href="#camada-6">6 — Configuração</a><a href="#camada-7">7 — Saída</a><a href="#camada-8">8 — Provedores</a><a href="#camada-9">9 — Artifactory</a><a href="#camada-Transversal">Transversal</a></nav>
+<main>
+    <section class="camada" id="camada-2">
+      <h2><span class="camada-num">2</span>Borda</h2>
+      
+      <article class="card" id="svc-0">
+        <header class="card-head">
+          <div>
+            <h3>Amazon Route 53</h3>
+            <p class="sub">DNS público do BFF</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Cliente&quot;] --&gt; B[&quot;Route 53&quot;] --&gt; C[&quot;API Gateway&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Resolve o domínio que o cliente digita para o endpoint do API Gateway. É onde você controla o nome público, o TTL e um eventual failover entre regiões.</p>
+            <p><span class="k">O que acontece se tirar</span>Nada quebra se o domínio já é gerenciado em outro DNS (registro.br, Cloudflare, DNS corporativo). Você só perde a integração nativa com ACM e health check da AWS.</p>
+            <p><span class="k">Alternativa</span>Qualquer DNS autoritativo. Aponte um CNAME para o endpoint do API Gateway.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-1">
+        <header class="card-head">
+          <div>
+            <h3>AWS WAF</h3>
+            <p class="sub">Filtro de requisição na borda</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Cliente&quot;] --&gt; B[&quot;WAF&quot;] --&gt; C[&quot;API Gateway&quot;]
+  B -.bloqueia.-&gt; D[&quot;descarta&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Bloqueia injeção, varredura e abuso antes de gastar Lambda, BFF e — principalmente — cota dos gateways dos provedores. Rate limit por IP evita que um script consuma seu limite de 429 com o parceiro.</p>
+            <p><span class="k">O que acontece se tirar</span>Você fica exposto a bot e enumeração no endpoint público. Em plataforma financeira isso costuma virar apontamento de segurança na primeira revisão.</p>
+            <p><span class="k">Alternativa</span>Throttling do próprio API Gateway resolve volume, mas não inspeciona conteúdo. Não substitui o WAF, complementa.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-2">
+        <header class="card-head">
+          <div>
+            <h3>Amazon API Gateway (HTTP API)</h3>
+            <p class="sub">Entrada única do BFF</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;WAF&quot;] --&gt; B[&quot;API Gateway HTTP API&quot;]
+  B --&gt; C[&quot;Lambda Authorizer&quot;]
+  B --&gt; D[&quot;VPC Link → BFF&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>É a premissa do seu desenho: todo tráfego entra por aqui. Concentra TLS público, authorizer, throttling por cliente e o contrato público. É também o que permite os serviços de domínio não terem gateway próprio.</p>
+            <p><span class="k">O que acontece se tirar</span>Sem ele você precisaria expor um ALB público e reimplementar auth, quota e contrato em cada serviço — exatamente o anti-padrão descartado no início.</p>
+            <p><span class="k">Alternativa</span>ALB público + autenticação no BFF. Mais barato em volume alto, mas você perde authorizer gerenciado, quota por cliente e o modelo de contrato.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-3">
+        <header class="card-head">
+          <div>
+            <h3>AWS Lambda — Authorizer</h3>
+            <p class="sub">Autorização própria antes de rotear</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;API Gateway&quot;] --&gt;|1. valida| B[&quot;Lambda Authorizer&quot;]
+  B --&gt;|allow + context| A
+  A --&gt;|2. roteia| C[&quot;BFF&quot;]
+  B -.-&gt; D[&quot;IdP / chaves públicas&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>O API Gateway chama a Lambda antes de rotear. É onde entra a autorização que é <em>sua</em>, não do IdP: perfil do investidor, suitability, produto habilitado para aquele cliente, escopo por rota. Ela devolve allow/deny mais um <em>context</em> (CPF, perfil, conta) que o BFF propaga adiante sem precisar reabrir o token.</p>
+            <p><span class="k">O que acontece se tirar</span>Se a regra for apenas “o token é válido?”, o JWT authorizer nativo do HTTP API faz isso sem Lambda — sem cold start, sem custo por invocação e sem mais um artefato para versionar. Só coloque a Lambda quando houver regra de negócio na autorização.</p>
+            <p><span class="k">Alternativa</span>JWT authorizer nativo (regra simples) ou autorização dentro do próprio BFF (mas aí o serviço passa a confiar em quem chamou, e a decisão sai da borda).</p>
+            <p class="custo"><span>Custo / atenção</span>Cobrada por invocação. Ligue o cache do authorizer com TTL: o mesmo token não precisa de nova invocação a cada requisição.</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-4">
+        <header class="card-head">
+          <div>
+            <h3>Amazon Cognito</h3>
+            <p class="sub">Emissão e validação de identidade</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Cliente&quot;] --&gt; B[&quot;Cognito / IdP&quot;] --&gt;|JWT| A
+  B -.chaves públicas.-&gt; C[&quot;Lambda Authorizer&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Emite o token que o cliente apresenta e expõe as chaves públicas que o authorizer usa para validar assinatura.</p>
+            <p><span class="k">O que acontece se tirar</span>Se já existe IdP corporativo (Keycloak, Entra ID, Auth0, o IdP do banco), use ele — o desenho não muda, só a origem das chaves.</p>
+            <p><span class="k">Alternativa</span>Qualquer provedor OIDC. O Lambda Authorizer valida a assinatura da mesma forma.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-3">
+      <h2><span class="camada-num">3</span>BFF</h2>
+      
+      <article class="card" id="svc-5">
+        <header class="card-head">
+          <div>
+            <h3>Amazon ECS Fargate (BFF)</h3>
+            <p class="sub">Compute do agregador</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;API Gateway&quot;] --&gt;|VPC Link| B[&quot;BFF — ECS Fargate&quot;] --&gt; C[&quot;ALB interno&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>O BFF precisa de compute. Fargate mantém conexão viva (keep-alive) com o ALB interno, não tem cold start e o mesmo padrão de task vale para BFF e domínio — um blueprint só para o time aprender.</p>
+            <p><span class="k">O que acontece se tirar</span>Não existe BFF sem compute. A escolha real é Fargate x Lambda.</p>
+            <p><span class="k">Alternativa</span>Lambda: mais barato em tráfego baixo e intermitente, mas cold start e pool de conexão por invocação atrapalham quando a rota chama 4 gateways externos.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-6">
+        <header class="card-head">
+          <div>
+            <h3>VPC Link</h3>
+            <p class="sub">Ponte privada do API Gateway para a VPC</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;API Gateway&quot;] --&gt; B[&quot;VPC Link&quot;] --&gt; C[&quot;BFF na subnet privada&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>É o que permite o API Gateway alcançar um recurso privado. Sem ele, o gateway só chama endpoint público — e aí o BFF precisaria de IP público.</p>
+            <p><span class="k">O que acontece se tirar</span>Você seria forçado a expor o BFF na internet. Quebra a premissa de entrada única controlada.</p>
+            <p><span class="k">Alternativa</span>Nenhuma, dentro deste desenho. É componente de ligação, não uma escolha.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-4">
+      <h2><span class="camada-num">4</span>Roteamento interno</h2>
+      
+      <article class="card" id="svc-7">
+        <header class="card-head">
+          <div>
+            <h3>Application Load Balancer (interno)</h3>
+            <p class="sub">Endpoint privado + roteamento por path</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;BFF&quot;] --&gt; B[&quot;ALB interno&quot;]
+  B --&gt;|/fundos/*| C[&quot;tg-fundos&quot;]
+  B -.-&gt;|/cdb/*| D[&quot;tg-cdb (fase 2)&quot;]
+  B -.-&gt;|/renda-fixa/*| E[&quot;tg-renda-fixa (fase 3)&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Dá ao serviço de Fundos um endpoint privado sem gateway próprio, e é o ponto onde CDB e Renda Fixa entram depois: cada fase nova é um target group e uma regra de path. Também entrega health check, deploy blue/green e mTLS opcional no listener.</p>
+            <p><span class="k">O que acontece se tirar</span>Sem ele, ou o BFF chama IP de task (frágil, muda a cada deploy) ou você cria um segundo API Gateway — o anti-padrão já descartado.</p>
+            <p><span class="k">Alternativa</span>ECS Service Connect para tráfego leste-oeste. Não substitui o ALB no caminho BFF → domínio quando você quer blue/green por target group.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-8">
+        <header class="card-head">
+          <div>
+            <h3>ECS Service Connect / Cloud Map</h3>
+            <p class="sub">Descoberta entre serviços</p>
+          </div>
+          <span class="badge b-opcional">Opcional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ECS cdb (fase 2)&quot;] --&gt;|http://fundos:8080| B[&quot;ECS fundos&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Útil quando, na fase 2, o serviço de CDB precisar consultar Fundos direto. Resolve por nome DNS curto, sem passar por load balancer.</p>
+            <p><span class="k">O que acontece se tirar</span>Na fase 1 não faz falta: só existe um serviço de domínio, e o BFF já chega nele pelo ALB.</p>
+            <p><span class="k">Alternativa</span>Chamar via ALB interno também funciona — custa um hop a mais e não dá métrica por serviço.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-5">
+      <h2><span class="camada-num">5</span>Aplicação</h2>
+      
+      <article class="card" id="svc-9">
+        <header class="card-head">
+          <div>
+            <h3>Amazon ECS Fargate (fundos)</h3>
+            <p class="sub">Compute do serviço de domínio</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ALB interno&quot;] --&gt; B[&quot;ECS Fargate — fundos&quot;] --&gt; C[&quot;lib provider-clients&quot;] --&gt; D[&quot;gateways externos&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Roda o Java com o modelo hexagonal. Fargate foi escolhido por manter pool de conexão vivo com os 4 gateways externos — o que reduz handshake TLS e mTLS por requisição — e por não ter cold start numa chamada que já depende de 4 terceiros.</p>
+            <p><span class="k">O que acontece se tirar</span>Não há serviço sem compute.</p>
+            <p><span class="k">Alternativa</span>Lambda (cold start + pool novo a cada invocação atrapalham a integração) ou EC2 (você passa a gerenciar patch e AMI).</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-10">
+        <header class="card-head">
+          <div>
+            <h3>Amazon ECR</h3>
+            <p class="sub">Registro da imagem do container</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;CI do serviço&quot;] --&gt; B[&quot;ECR&quot;] --&gt; C[&quot;ECS task&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>É de onde o ECS puxa a imagem. Fica na mesma conta e região, com scan de vulnerabilidade e política de retenção.</p>
+            <p><span class="k">O que acontece se tirar</span>Sem registro não há deploy de container.</p>
+            <p><span class="k">Alternativa</span>Docker Hub ou o registro do próprio Artifactory. Funciona, mas adiciona egress e credencial para o ECS puxar imagem.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-11">
+        <header class="card-head">
+          <div>
+            <h3>Caffeine (biblioteca, não serviço)</h3>
+            <p class="sub">Cache em processo</p>
+          </div>
+          <span class="badge b-opcional">Opcional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;App Java&quot;] --&gt; B{&quot;Caffeine&quot;}
+  B --&gt;|hit| A
+  B --&gt;|miss| C[&quot;gateway externo&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Evita ida ao gateway externo para dado que não muda: token OAuth2, cadastro de fundo, calendário. Zero infraestrutura nova — vive no heap da própria task.</p>
+            <p><span class="k">O que acontece se tirar</span>Cada requisição do cliente vira requisição ao provedor. Isso consome sua cota de 429 e adiciona latência que você não controla.</p>
+            <p><span class="k">Alternativa</span>ElastiCache, mas só quando o cache precisar ser o mesmo para todas as tasks.</p>
+            <p class="custo"><span>Custo / atenção</span>Custa memória da task. Limite por número de entradas (maximumSize), não por “até encher”.</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-12">
+        <header class="card-head">
+          <div>
+            <h3>ElastiCache Serverless for Valkey</h3>
+            <p class="sub">Estado compartilhado entre tasks</p>
+          </div>
+          <span class="badge b-opcional">Opcional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ECS task 1&quot;] --&gt; C[&quot;ElastiCache Valkey&quot;]
+  B[&quot;ECS task 2&quot;] --&gt; C</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Entra na fase 2, quando existir algo que precise ser igual para todas as tasks: dedup de webhook, lock, rate limit global contra o gateway do provedor. Valkey e não Redis OSS — é drop-in, mais barato e é o motor que a AWS recomenda para deployment novo.</p>
+            <p><span class="k">O que acontece se tirar</span>Nada, na fase 1. O Caffeine cobre o que você precisa hoje.</p>
+            <p><span class="k">Alternativa</span>DynamoDB com TTL para chave de idempotência — mais barato e sem cluster, com a vantagem de ser durável (o ElastiCache é memória volátil).</p>
+            <p class="custo"><span>Custo / atenção</span>Serverless tem piso mensal mesmo vazio. Nó t4g.micro sai mais barato para uso pequeno e constante.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-6">
+      <h2><span class="camada-num">6</span>Configuração</h2>
+      
+      <article class="card" id="svc-13">
+        <header class="card-head">
+          <div>
+            <h3>AWS Systems Manager Parameter Store</h3>
+            <p class="sub">Endpoints e parâmetros por ambiente</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Parameter Store&quot;] --&gt;|boot| B[&quot;App Java&quot;] --&gt; C[&quot;gateway externo&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>É onde vivem base-url, basePath, path por operação e timeout por endpoint. Trocar a URL de homologação de um provedor vira mudança de parâmetro, não build e deploy — e o mesmo artefato sobe em dev, hml e prd.</p>
+            <p><span class="k">O que acontece se tirar</span>Os endpoints voltam para variável de ambiente do task definition ou, pior, para dentro do código. Toda mudança de URL vira release.</p>
+            <p><span class="k">Alternativa</span>AppConfig (validação e rollout gradual) ou o próprio Artifactory servindo arquivo de configuração. Parameter Store é o mais simples e tem tier grátis.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-14">
+        <header class="card-head">
+          <div>
+            <h3>AWS Secrets Manager</h3>
+            <p class="sub">Credenciais dos gateways e do Artifactory</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Secrets Manager&quot;] --&gt;|runtime| B[&quot;lib provider-clients&quot;] --&gt; C[&quot;gateway com mTLS&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Guarda subscription key, client secret, certificado mTLS e o token de leitura do Artifactory usado pelo CI. Nada disso pode entrar na imagem nem no repositório.</p>
+            <p><span class="k">O que acontece se tirar</span>Credencial em variável de ambiente versionada ou em imagem — o achado mais comum em auditoria.</p>
+            <p><span class="k">Alternativa</span>Parameter Store SecureString: mais barato, mas sem rotação automática e sem versionamento de segredo.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-15">
+        <header class="card-head">
+          <div>
+            <h3>AWS Private CA</h3>
+            <p class="sub">Emissão de certificado cliente para mTLS</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Private CA&quot;] --&gt;|cert cliente| B[&quot;Secrets Manager&quot;] --&gt; C[&quot;lib provider-clients&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Só é necessário se algum gateway exigir mTLS <em>e</em> aceitar certificado emitido por CA sua.</p>
+            <p><span class="k">O que acontece se tirar</span>Nada, se os provedores emitem o certificado cliente (é o caso mais comum). Aí basta guardar o que eles mandaram no Secrets Manager.</p>
+            <p><span class="k">Alternativa</span>Certificado emitido pelo próprio provedor. Confirme isso na ficha do gateway antes de provisionar — a Private CA tem custo mensal fixo relevante para uso pequeno.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-16">
+        <header class="card-head">
+          <div>
+            <h3>AWS AppConfig</h3>
+            <p class="sub">Feature flag por gateway</p>
+          </div>
+          <span class="badge b-opcional">Opcional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;AppConfig&quot;] --&gt;|flag| B[&quot;App Java&quot;]
+  B -.desliga.-&gt; C[&quot;gateway em incidente&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Permite desligar um provedor em incidente sem subir versão — útil quando um dos 4 gateways cai e você quer degradar a funcionalidade em vez de derrubar a rota.</p>
+            <p><span class="k">O que acontece se tirar</span>Você depende de deploy para desligar uma integração. Em incidente, isso é lento.</p>
+            <p><span class="k">Alternativa</span>Parâmetro booleano no Parameter Store lido com TTL curto. Resolve 80% do caso sem serviço novo.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-17">
+        <header class="card-head">
+          <div>
+            <h3>Amazon S3 + Object Lock</h3>
+            <p class="sub">Trilha imutável de requisição e resposta</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;App Java&quot;] --&gt;|payload| B[&quot;S3 Object Lock&quot;]
+  B -.retenção.-&gt; C[&quot;auditoria&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Como não há banco, é o único lugar onde fica prova do que foi enviado e recebido de cada provedor. Object Lock impede alteração e exclusão durante o período de retenção.</p>
+            <p><span class="k">O que acontece se tirar</span>Você não consegue reconstruir o que aconteceu numa ordem contestada. Sem banco, o log do Datadog tem retenção limitada e não é prova imutável.</p>
+            <p><span class="k">Alternativa</span>Nenhuma boa. Se houver exigência regulatória de retenção, isso deixa de ser opcional — vale confirmar com compliance antes de fechar a fase 1.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-7">
+      <h2><span class="camada-num">7</span>Saída</h2>
+      
+      <article class="card" id="svc-18">
+        <header class="card-head">
+          <div>
+            <h3>NAT Gateway + Elastic IP</h3>
+            <p class="sub">Saída com IP fixo para allowlist</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ECS fundos&quot;] --&gt; B[&quot;NAT + EIP fixo&quot;] --&gt; C[&quot;Internet&quot;] --&gt; D[&quot;gateways dos provedores&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Os gateways dos provedores quase sempre exigem allowlist de IP de origem. O EIP dá esse IP fixo, e permite que as tasks fiquem em subnet privada sem IP público.</p>
+            <p><span class="k">O que acontece se tirar</span>Ou você põe IP público nas tasks (o IP muda a cada deploy e quebra a allowlist), ou não consegue sair para os provedores.</p>
+            <p><span class="k">Alternativa</span>NAT instance (mais barato, mas vira sua responsabilidade operacional) ou saída via firewall corporativo por Direct Connect.</p>
+            <p class="custo"><span>Custo / atenção</span>Cobra por hora e por GB processado. É um dos itens de custo fixo mais visíveis do desenho.</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-19">
+        <header class="card-head">
+          <div>
+            <h3>Internet Gateway</h3>
+            <p class="sub">Rota de saída da VPC</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;NAT Gateway&quot;] --&gt; B[&quot;Internet Gateway&quot;] --&gt; C[&quot;Internet&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Componente da VPC que dá saída à internet. O NAT depende dele.</p>
+            <p><span class="k">O que acontece se tirar</span>Não há saída para os provedores.</p>
+            <p><span class="k">Alternativa</span>Nenhuma, se os provedores estão na internet pública.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-20">
+        <header class="card-head">
+          <div>
+            <h3>VPC Endpoints (PrivateLink)</h3>
+            <p class="sub">Acesso privado a serviços AWS</p>
+          </div>
+          <span class="badge b-opcional">Opcional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ECS task&quot;] --&gt; B[&quot;VPC Endpoint&quot;] --&gt; C[&quot;Secrets Manager / ECR / S3&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Faz as chamadas a Secrets Manager, Parameter Store, ECR e S3 saírem pela rede da AWS em vez de passar pelo NAT — reduz o volume cobrado no NAT e tira esses acessos da internet.</p>
+            <p><span class="k">O que acontece se tirar</span>Tudo continua funcionando, passando pelo NAT e pagando por GB.</p>
+            <p><span class="k">Alternativa</span>Nenhuma necessária. É otimização de custo e postura de rede, não requisito.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-8">
+      <h2><span class="camada-num">8</span>Provedores</h2>
+      
+      <article class="card" id="svc-21">
+        <header class="card-head">
+          <div>
+            <h3>Gateways das 4 APIs externas</h3>
+            <p class="sub">Dado do problema</p>
+          </div>
+          <span class="badge b-externo">Fora da AWS</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;lib provider-clients&quot;] --&gt; B[&quot;Gateway do provedor&quot;]
+  B --&gt; C[&quot;/endpoint 1&quot;]
+  B --&gt; D[&quot;/endpoint 2&quot;]
+  B --&gt; E[&quot;/endpoint N&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Cada provedor expõe um gateway: um host, N endpoints. A cota de throttling (429) é do host e compartilhada por todos os endpoints dele — por isso pool, bulkhead e circuit breaker são por gateway, e timeout é por endpoint.</p>
+            <p><span class="k">O que acontece se tirar</span>Não é uma escolha sua. O que é escolha é como você se protege deles.</p>
+            <p><span class="k">Alternativa</span>—</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-9">
+      <h2><span class="camada-num">9</span>Artifactory</h2>
+      
+      <article class="card" id="svc-22">
+        <header class="card-head">
+          <div>
+            <h3>JFrog Artifactory</h3>
+            <p class="sub">Repositório Maven privado da lib</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;repo lib-provider-clients&quot;] --&gt; B[&quot;CI da lib&quot;] --&gt; C[&quot;Artifactory&quot;]
+  C -.dependência.-&gt; D[&quot;CI do svc-fundos&quot;] --&gt; E[&quot;ECR&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>A lib provider-clients vive em repositório Git próprio e é publicada aqui como JAR versionado. É isso que separa o ciclo de vida: a lib muda quando o provedor muda, o serviço muda quando a regra de negócio muda. As fases 2 e 3 consomem a mesma versão publicada, sem copiar código.</p>
+            <p><span class="k">O que acontece se tirar</span>Repositórios juntos forçam deploy do serviço a cada ajuste de transporte, e as três fases acabam com cópias divergentes do mesmo client.</p>
+            <p><span class="k">Alternativa</span>AWS CodeArtifact, se quiser ficar 100% AWS — o desenho não muda, só a URL do repositório.</p>
+            <p class="custo"><span>Custo / atenção</span>Se o Artifactory for self-hosted no on-premises, o CI precisa de Direct Connect, VPN ou PrivateLink para alcançá-lo. Vale confirmar antes de provisionar.</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-23">
+        <header class="card-head">
+          <div>
+            <h3>AWS CodeBuild / CodePipeline</h3>
+            <p class="sub">Execução do build</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;Git&quot;] --&gt; B[&quot;CI&quot;] --&gt; C[&quot;Artifactory / ECR&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Roda o build da lib e o do serviço, com credencial vindo do IAM em vez de token estático.</p>
+            <p><span class="k">O que acontece se tirar</span>Nada, se você já usa GitHub Actions, GitLab CI ou Jenkins. O importante é que existam dois pipelines separados, um por repositório.</p>
+            <p><span class="k">Alternativa</span>Qualquer CI. O requisito real é: build reproduzível, sem SNAPSHOT em homologação e produção, e versão fixada no pom.</p>
+            
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="camada" id="camada-Transversal">
+      <h2><span class="camada-num">Transversal</span>Transversal</h2>
+      
+      <article class="card" id="svc-24">
+        <header class="card-head">
+          <div>
+            <h3>IAM — Task Role e Execution Role</h3>
+            <p class="sub">Identidade da aplicação</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ECS task&quot;] --&gt;|Task Role| B[&quot;Parameter Store / Secrets Manager&quot;]
+  C[&quot;Agente ECS&quot;] --&gt;|Execution Role| D[&quot;ECR&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Task Role dá à aplicação acesso a Parameter Store, Secrets Manager e AppConfig. Execution Role serve ao próprio ECS para puxar imagem e ler segredos no start. São papéis diferentes de propósito — não junte os dois.</p>
+            <p><span class="k">O que acontece se tirar</span>Você acaba usando credencial estática dentro do container. É o caminho mais curto para um incidente de vazamento.</p>
+            <p><span class="k">Alternativa</span>Nenhuma. É base da plataforma.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-25">
+        <header class="card-head">
+          <div>
+            <h3>Security Groups</h3>
+            <p class="sub">Autorização de rede entre camadas</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;SG do BFF&quot;] --&gt; B[&quot;SG do ALB&quot;] --&gt; C[&quot;SG das tasks&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>É o que garante que ninguém pule o BFF: o SG do ALB aceita só o SG do BFF, e o SG das tasks aceita só o SG do ALB. Sem isso, a “entrada única” é convenção, não controle.</p>
+            <p><span class="k">O que acontece se tirar</span>Qualquer recurso dentro da VPC passa a alcançar o serviço de domínio direto.</p>
+            <p><span class="k">Alternativa</span>Nenhuma. Faz parte da VPC.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-26">
+        <header class="card-head">
+          <div>
+            <h3>AWS KMS</h3>
+            <p class="sub">Chaves de criptografia</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;KMS&quot;] --&gt; B[&quot;Secrets Manager&quot;]
+  A --&gt; C[&quot;S3&quot;]
+  A --&gt; D[&quot;ECR&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Criptografa segredos, parâmetros SecureString, imagens no ECR e objetos no S3. A chave gerenciada pela AWS já cobre o básico sem custo adicional.</p>
+            <p><span class="k">O que acontece se tirar</span>Não é opcional na prática — os serviços acima já usam KMS por padrão.</p>
+            <p><span class="k">Alternativa</span>Chave gerenciada pelo cliente (CMK) quando houver exigência de rotação e política próprias. Aí passa a ter custo por chave.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-27">
+        <header class="card-head">
+          <div>
+            <h3>Amazon CloudWatch</h3>
+            <p class="sub">Telemetria nativa da plataforma</p>
+          </div>
+          <span class="badge b-obrigatorio">Obrigatório</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;ALB / API Gateway / Fargate&quot;] --&gt; B[&quot;CloudWatch&quot;] -.AWS Integration.-&gt; C[&quot;Datadog&quot;]</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Os serviços gerenciados (ALB, API Gateway, Lambda, Fargate) publicam métrica aqui de qualquer forma. É a fonte que a AWS Integration do Datadog lê.</p>
+            <p><span class="k">O que acontece se tirar</span>Não é uma escolha: existe por padrão. A escolha é quanto log você retém aqui — com FireLens mandando direto ao Datadog, dá para reduzir bastante.</p>
+            <p><span class="k">Alternativa</span>Nenhuma. Você pode reduzir o uso, não eliminá-lo.</p>
+            
+          </div>
+        </div>
+      </article>
+      <article class="card" id="svc-28">
+        <header class="card-head">
+          <div>
+            <h3>Datadog</h3>
+            <p class="sub">Painel único de observabilidade</p>
+          </div>
+          <span class="badge b-condicional">Condicional</span>
+        </header>
+        <div class="card-body">
+          <div class="diagram"><pre class="mermaid">graph LR
+  A[&quot;dd-java-agent&quot;] --&gt; D[&quot;Datadog&quot;]
+  B[&quot;FireLens&quot;] --&gt; D
+  C[&quot;CloudWatch&quot;] -.-&gt; D</pre></div>
+          <div class="prose">
+            <p><span class="k">Por que está no desenho</span>Junta trace, log e métrica das 9 camadas numa correlação só, e permite monitor por gateway e por endpoint — que é onde quase toda falha nasce, já que o serviço é stateless.</p>
+            <p><span class="k">O que acontece se tirar</span>Nada quebra tecnicamente. Você fica com CloudWatch e X-Ray, correlação mais trabalhosa e sem Synthetics por provedor.</p>
+            <p><span class="k">Alternativa</span>CloudWatch + X-Ray (nativo, mais barato) ou Grafana/OpenTelemetry (mais trabalho de operação).</p>
+            <p class="custo"><span>Custo / atenção</span>Cobrado por host e por volume de log. Em Fargate, cada task conta — dimensione a amostragem de trace antes de escalar.</p>
+          </div>
+        </div>
+      </article>
+    </section></main>
+<footer>
+  <p><strong>Como ler os selos.</strong> <em>Obrigatório</em>: sem ele o desenho não funciona ou perde uma premissa
+  (entrada única, IP fixo, sem credencial na imagem). <em>Condicional</em>: depende de uma resposta que ainda não está
+  fechada — se há IdP corporativo, se o provedor exige mTLS com CA sua, se compliance exige trilha imutável.
+  <em>Opcional</em>: melhora custo ou operação, e pode entrar depois sem retrabalho.</p>
+  <p>Três decisões continuam em aberto e valem confirmar antes de provisionar: se a autorização precisa de regra própria
+  (define o Lambda Authorizer), se algum gateway exige mTLS com certificado emitido por você (define a Private CA), e se
+  há exigência regulatória de reter requisição e resposta (define o S3 com Object Lock — que, sem banco, é a única prova
+  que sobra).</p>
+</footer>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad:true, securityLevel:'loose',
+    theme:'base',
+    themeVariables:{
+      fontFamily:'IBM Plex Mono, monospace', fontSize:'12px',
+      primaryColor:'#E3F2F1', primaryTextColor:'#12202E', primaryBorderColor:'#0E7C7B',
+      lineColor:'#5A6B7B', tertiaryColor:'#FBF0DC'
+    },
+    flowchart:{ curve:'basis', padding:8 }
+  });
+</script>
+</body>
+</html>

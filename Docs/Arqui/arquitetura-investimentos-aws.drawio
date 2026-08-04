@@ -1,0 +1,506 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0" type="device">
+  <diagram id="pagina1" name="1 - Arquitetura AWS (Visao Geral)">
+    <mxGraphModel dx="2000" dy="1200" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2600" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="p1title" value="Plataforma de Investimentos - Fundos (hoje) | CDB e Renda Fixa (evolucao) - Entrada unica pelo API Gateway do BFF" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1600" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="awsCloud" value="AWS Cloud" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="80" width="2000" height="1560" as="geometry" />
+        </mxCell>
+
+        <mxCell id="region" value="Regiao sa-east-1 (Sao Paulo)" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#147EBA;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="140" width="1930" height="1470" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edgeBox" value="Camada de borda - ENTRADA UNICA (contrato publico do BFF)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF4E6;strokeColor=#ED7100;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#B35B00;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="190" width="700" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="vpc" value="VPC 10.0.0.0/16 - 2 AZs" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#8C4FFF;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="380" width="1420" height="1180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pubSub" value="Subnets Publicas" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F2FAF0;strokeColor=#7AA116;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#5C7D0F;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="450" width="260" height="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="privApp" value="Subnets Privadas - Aplicacao (sem IP publico)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EFF7FA;strokeColor=#00A4A6;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#00787A;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="450" width="1050" height="700" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecsCluster" value="Cluster ECS Fargate - plataforma-investimentos" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF3EA;strokeColor=#ED7100;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#B35B00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="640" width="990" height="480" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fundosSvc" value="Servico: fundos (HOJE)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#232F3E;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#232F3E;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="685" width="300" height="410" as="geometry" />
+        </mxCell>
+
+        <mxCell id="taskBox" value="ECS Task Definition" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F7F7;strokeColor=#879196;verticalAlign=top;align=left;spacingLeft=8;spacingTop=2;fontColor=#545B64;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="725" y="720" width="270" height="360" as="geometry" />
+        </mxCell>
+
+        <mxCell id="javaApp" value="Container: App Java (Spring Boot)&lt;br&gt;Hexagonal / Ports &amp; Adapters&lt;br&gt;modulo Fundos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="740" y="745" width="240" height="62" as="geometry" />
+        </mxCell>
+
+        <mxCell id="libBox" value="lib provider-clients (JAR)&lt;br&gt;4 clients HTTPS + mTLS&lt;br&gt;timeout / retry / circuit breaker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8FF;strokeColor=#3334B9;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="740" y="817" width="240" height="62" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ddAgent" value="Sidecar: Datadog Agent&lt;br&gt;APM + DogStatsD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="740" y="889" width="240" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="firelens" value="Sidecar: FireLens / Fluent Bit&lt;br&gt;logs -&gt; Datadog" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="740" y="951" width="240" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="portNote" value="Porta 8080 - somente SG do BFF/ALB&lt;br&gt;Target Group: tg-fundos" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontSize=9;fontColor=#545B64;" vertex="1" parent="1">
+          <mxGeometry x="740" y="1013" width="240" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cdbSvc" value="Servico: cdb (FUTURO)&lt;br&gt;&lt;br&gt;Mesmo blueprint:&lt;br&gt;App Java + sidecars Datadog&lt;br&gt;usa a MESMA lib provider-clients&lt;br&gt;&lt;br&gt;Novo Target Group tg-cdb&lt;br&gt;Nova regra no ALB: /cdb/*&lt;br&gt;&lt;br&gt;ZERO mudanca na borda:&lt;br&gt;o BFF apenas publica a nova rota" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;dashed=1;verticalAlign=top;align=center;spacingTop=6;fontColor=#545B64;fontSize=10;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="685" width="300" height="410" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rfSvc" value="Servico: renda-fixa (FUTURO)&lt;br&gt;&lt;br&gt;Mesmo blueprint:&lt;br&gt;App Java + sidecars Datadog&lt;br&gt;usa a MESMA lib provider-clients&lt;br&gt;&lt;br&gt;Novo Target Group tg-renda-fixa&lt;br&gt;Nova regra no ALB: /renda-fixa/*&lt;br&gt;&lt;br&gt;Escala e deploy independentes&lt;br&gt;por contexto de negocio" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;dashed=1;verticalAlign=top;align=center;spacingTop=6;fontColor=#545B64;fontSize=10;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="1350" y="685" width="300" height="410" as="geometry" />
+        </mxCell>
+
+        <mxCell id="privData" value="Subnets Privadas - Dados e Integracao" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5EFFF;strokeColor=#8C4FFF;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#6B2FD6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1190" width="1340" height="280" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cicd" value="CI/CD e Artefatos" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F2F8FF;strokeColor=#3334B9;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#3334B9;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1790" y="380" width="400" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="awsObs" value="Telemetria nativa AWS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF0F5;strokeColor=#E7157B;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontColor=#B01060;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1790" y="750" width="400" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ddBox" value="Datadog (SaaS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;verticalAlign=top;align=center;spacingTop=6;fontColor=#632CA6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2300" y="380" width="250" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ddText" value="- APM / Distributed Tracing&lt;br&gt;&#160; (dd-java-agent)&lt;br&gt;- Logs correlacionados&lt;br&gt;&#160; (dd.trace_id)&lt;br&gt;- Metricas de infra e custom&lt;br&gt;- Database Monitoring (Aurora)&lt;br&gt;- Synthetics no endpoint do BFF&lt;br&gt;- RUM (app/web)&lt;br&gt;- AWS Integration (CloudWatch)&lt;br&gt;- Monitores de SLO por provedor&lt;br&gt;&#160; externo (latencia / erro)" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#432466;" vertex="1" parent="1">
+          <mxGeometry x="2315" y="415" width="225" height="285" as="geometry" />
+        </mxCell>
+
+        <mxCell id="provBox" value="Provedores Externos - 4 APIs HTTPS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EFEFEF;strokeColor=#545B64;verticalAlign=top;align=center;spacingTop=6;fontColor=#232F3E;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2300" y="760" width="250" height="580" as="geometry" />
+        </mxCell>
+
+        <mxCell id="prov1" value="API Provedor 1&lt;br&gt;(distribuidor)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2320" y="810" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="prov2" value="API Provedor 2&lt;br&gt;(administrador)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2320" y="930" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="prov3" value="API Provedor 3&lt;br&gt;(custodiante)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2320" y="1050" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="prov4" value="API Provedor 4&lt;br&gt;(precos / cotas)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2320" y="1170" width="210" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clients" value="Apps Mobile / Web&lt;br&gt;Parceiros B2B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEFEF;strokeColor=#545B64;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="170" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r53" value="Route 53" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.route_53;" vertex="1" parent="1">
+          <mxGeometry x="370" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="waf" value="AWS WAF" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F54749;gradientDirection=north;fillColor=#C7131F;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;" vertex="1" parent="1">
+          <mxGeometry x="520" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="apigw" value="API Gateway (HTTP API)&lt;br&gt;do BFF - UNICO gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="670" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cognito" value="Cognito&lt;br&gt;JWT Authorizer" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F54749;gradientDirection=north;fillColor=#C7131F;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1">
+          <mxGeometry x="820" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="igw" value="Internet Gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;" vertex="1" parent="1">
+          <mxGeometry x="400" y="500" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nat" value="NAT Gateway&lt;br&gt;+ Elastic IP fixo" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.nat_gateway;" vertex="1" parent="1">
+          <mxGeometry x="530" y="500" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bff" value="BFF - ECS Fargate&lt;br&gt;(agregacao / orquestracao)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.fargate;" vertex="1" parent="1">
+          <mxGeometry x="700" y="500" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="alb" value="ALB INTERNO (scheme=internal)&lt;br&gt;roteia por path: /fundos/* /cdb/* /renda-fixa/*" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.application_load_balancer;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="500" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudmap" value="Cloud Map / ECS Service Connect&lt;br&gt;(alternativa leste-oeste)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloud_map;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="500" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="aurora" value="Aurora PostgreSQL&lt;br&gt;Serverless v2" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.aurora;" vertex="1" parent="1">
+          <mxGeometry x="410" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dynamo" value="DynamoDB&lt;br&gt;idempotencia / dedup" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="560" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="S3 Object Lock&lt;br&gt;payloads de auditoria" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#60A337;gradientDirection=north;fillColor=#277116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="710" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="secrets" value="Secrets Manager&lt;br&gt;certs mTLS / tokens" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F54749;gradientDirection=north;fillColor=#C7131F;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;" vertex="1" parent="1">
+          <mxGeometry x="860" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pca" value="ACM Private CA&lt;br&gt;mTLS" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F54749;gradientDirection=north;fillColor=#C7131F;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.certificate_manager;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eb" value="EventBridge&lt;br&gt;eventos de dominio" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sqs" value="SQS + DLQ&lt;br&gt;outbox / retry" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sfn" value="Step Functions&lt;br&gt;saga do ciclo da ordem" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.step_functions;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vpce" value="VPC Endpoints&lt;br&gt;(PrivateLink p/ servicos AWS)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.endpoints;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="1240" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cart" value="CodeArtifact" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codeartifact;" vertex="1" parent="1">
+          <mxGeometry x="1840" y="425" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ecr" value="ECR" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecr;" vertex="1" parent="1">
+          <mxGeometry x="1970" y="425" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cbuild" value="CodeBuild" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codebuild;" vertex="1" parent="1">
+          <mxGeometry x="2100" y="425" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cicdText" value="lib provider-clients publicada como JAR versionado (semver).&lt;br&gt;Contem SOMENTE transporte: client HTTP por provedor, SSLContext mTLS,&lt;br&gt;timeouts, retry/backoff, circuit breaker e instrumentacao.&lt;br&gt;&lt;br&gt;A traducao para o dominio (ACL) fica DENTRO de cada servico -&lt;br&gt;assim fundos, cdb e renda-fixa evoluem sem acoplamento de deploy." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1810" y="540" width="365" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cw" value="CloudWatch" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="1">
+          <mxGeometry x="1830" y="790" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cwText" value="Container Insights, metricas de ALB,&lt;br&gt;Aurora, SQS, EventBridge e API Gateway.&lt;br&gt;&lt;br&gt;Coletadas pela AWS Integration do Datadog&lt;br&gt;(role IAM cross-account read-only).&lt;br&gt;CloudWatch continua como fonte de&lt;br&gt;metricas gerenciadas; o Datadog e o painel unico." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1910" y="785" width="270" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="secNote" value="Sem IP publico nas tasks | Comunicacao autorizada por Security Group (SG do BFF -&gt; SG do ALB -&gt; SG dos servicos) | Saida somente via NAT com EIP fixo (allowlist dos provedores)" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#8C4FFF;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1490" width="1340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="acctNote" value="Multi-conta (Control Tower): esta VPC representa a conta de workload (dev / hml / prd). Contas de seguranca e de rede/CI-CD ficam separadas. Se o BFF viver em OUTRA conta, ver pagina 2 - Opcao C." style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#147EBA;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1555" width="1420" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#232F3E;" edge="1" parent="1" source="clients" target="r53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#232F3E;" edge="1" parent="1" source="r53" target="waf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#232F3E;" edge="1" parent="1" source="waf" target="apigw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#C7131F;dashed=1;" edge="1" parent="1" source="cognito" target="apigw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="VPC Link (privado)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#BC1356;strokeWidth=2;" edge="1" parent="1" source="apigw" target="bff">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="HTTPS interno + JWT propagado&lt;br&gt;(SG-to-SG, sem gateway proprio)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#5A30B5;strokeWidth=2;" edge="1" parent="1" source="bff" target="alb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="/fundos/*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#5A30B5;strokeWidth=2;" edge="1" parent="1" source="alb" target="fundosSvc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="/cdb/*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#879196;dashed=1;" edge="1" parent="1" source="alb" target="cdbSvc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="/renda-fixa/*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#879196;dashed=1;" edge="1" parent="1" source="alb" target="rfSvc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="saida HTTPS / mTLS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;strokeWidth=2;" edge="1" parent="1" source="libBox" target="nat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;" edge="1" parent="1" source="nat" target="igw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="IP de saida fixo (EIP) - allowlist do provedor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="igw" target="provBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="410" />
+              <mxPoint x="2400" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;" edge="1" parent="1" source="javaApp" target="aurora">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;" edge="1" parent="1" source="javaApp" target="dynamo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="outbox" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#BC1356;" edge="1" parent="1" source="javaApp" target="eb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" value="certs mTLS em runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#C7131F;dashed=1;" edge="1" parent="1" source="secrets" target="libBox">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" value="APM traces + metricas (443)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#632CA6;strokeWidth=2;" edge="1" parent="1" source="ddAgent" target="ddBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2260" y="915" />
+              <mxPoint x="2260" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" value="logs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#632CA6;strokeWidth=2;" edge="1" parent="1" source="firelens" target="ddBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2240" y="977" />
+              <mxPoint x="2240" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" value="AWS Integration" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#632CA6;dashed=1;" edge="1" parent="1" source="cw" target="ddBox">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" value="dependencia JAR" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#3334B9;dashed=1;" edge="1" parent="1" source="cart" target="libBox">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" value="imagem" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#D05C17;dashed=1;" edge="1" parent="1" source="ecr" target="ecsCluster">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="pagina2" name="2 - Como o BFF fala com os servicos (opcoes)">
+    <mxGraphModel dx="1800" dy="1100" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="p2title" value="Como o servico de Fundos recebe requisicoes SEM ter API Gateway proprio" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sub" value="Regra do desenho: o API Gateway do BFF e o unico ponto de entrada publico. Os contextos de dominio (fundos, cdb, renda-fixa) sao servicos PRIVADOS dentro da VPC." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=2;fontColor=#545B64;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="1600" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="colA" value="OPCAO A - ALB interno atras do BFF&lt;br&gt;RECOMENDADO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F2FAF0;strokeColor=#7AA116;strokeWidth=3;verticalAlign=top;align=center;spacingTop=8;fontColor=#4F6B0D;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="450" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="colB" value="OPCAO B - ECS Service Connect&lt;br&gt;(leste-oeste, mesmo cluster)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F7F7;strokeColor=#879196;verticalAlign=top;align=center;spacingTop=8;fontColor=#232F3E;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="130" width="450" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="colC" value="OPCAO C - VPC Lattice ou PrivateLink&lt;br&gt;(BFF em OUTRA conta/VPC)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F7F7;strokeColor=#879196;verticalAlign=top;align=center;spacingTop=8;fontColor=#232F3E;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="130" width="450" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="colD" value="OPCAO D - Um API Gateway por servico&lt;br&gt;ANTI-PADRAO neste cenario" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#C7131F;verticalAlign=top;align=center;spacingTop=8;fontColor=#8B0F18;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="130" width="450" height="900" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" value="Cliente" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="185" y="200" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="API Gateway (HTTP API)&lt;br&gt;+ JWT Authorizer + WAF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7F1;strokeColor=#BC1356;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="145" y="285" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="BFF (ECS Fargate)&lt;br&gt;agrega e orquestra" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="145" y="385" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="ALB INTERNO&lt;br&gt;listener 443 - regras por path" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#5A30B5;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="145" y="485" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="tg-fundos&lt;br&gt;ECS fundos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#232F3E;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="595" width="120" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="tg-cdb&lt;br&gt;ECS cdb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;dashed=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="205" y="595" width="120" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="tg-renda-fixa&lt;br&gt;ECS renda-fixa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;dashed=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="340" y="595" width="120" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="aText" value="Como funciona&lt;br&gt;- API Gateway alcanca a VPC por VPC Link (nunca expoe o servico).&lt;br&gt;- O ALB e scheme=internal: nao tem DNS publico nem IP publico.&lt;br&gt;- Security Group do ALB aceita SOMENTE o SG do BFF.&lt;br&gt;- Roteamento por path: /fundos/*, /cdb/*, /renda-fixa/*.&lt;br&gt;&lt;br&gt;Por que recomendo&lt;br&gt;- Adicionar CDB = novo target group + 1 regra. Nenhuma mudanca na borda.&lt;br&gt;- Serve tanto para monolito modular (1 servico, varios paths) quanto para&lt;br&gt;&#160; a quebra futura em servicos separados - o contrato do BFF nao muda.&lt;br&gt;- Health check, deploy blue/green (CodeDeploy) e sticky routing prontos.&lt;br&gt;- Suporta mTLS no listener (trust store) se quiser autenticar o BFF.&lt;br&gt;&lt;br&gt;Custo/atencao&lt;br&gt;- 1 ALB (~USD 20-25/mes + LCU). Se precisar de latencia menor e&lt;br&gt;&#160; protocolo gRPC puro, avalie a Opcao B em conjunto." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="60" y="690" width="415" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="b1" value="BFF (ECS Fargate)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="625" y="285" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Service Connect (proxy Envoy sidecar)&lt;br&gt;namespace: investimentos.local" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#5A30B5;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="605" y="385" width="280" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="http://fundos:8080&lt;br&gt;ECS fundos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#232F3E;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="605" y="495" width="130" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="http://cdb:8080&lt;br&gt;ECS cdb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;dashed=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="755" y="495" width="130" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="bText" value="Como funciona&lt;br&gt;- ECS injeta um proxy no task; o BFF chama por nome DNS curto.&lt;br&gt;- Sem ALB no caminho leste-oeste: menos hop e menos custo.&lt;br&gt;- Ganha retry, outlier detection e metricas por servico de graca.&lt;br&gt;&lt;br&gt;Quando usar&lt;br&gt;- BFF e servicos de dominio no MESMO cluster/VPC e conta.&lt;br&gt;- Chamadas internas de alto volume entre contextos&lt;br&gt;&#160; (ex.: futuro cdb consultando dados de fundos).&lt;br&gt;&lt;br&gt;Limitacoes&lt;br&gt;- So vale para ECS falando com ECS. Se o BFF virar Lambda,&lt;br&gt;&#160; volta a precisar de ALB (Opcao A).&lt;br&gt;- Nao substitui o ALB para deploy blue/green por target group.&lt;br&gt;&lt;br&gt;Pode conviver com a Opcao A: ALB para norte-sul (BFF -&gt; dominio)&lt;br&gt;e Service Connect para leste-oeste (dominio -&gt; dominio)." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="540" y="600" width="415" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1" value="Conta A - BFF&lt;br&gt;API Gateway + ECS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1105" y="285" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="VPC Lattice Service Network&lt;br&gt;(auth policy IAM SigV4)&lt;br&gt;ou PrivateLink: NLB + Endpoint Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#5A30B5;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1085" y="385" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="Conta B - Workload&lt;br&gt;ALB interno + ECS fundos / cdb / renda-fixa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#232F3E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1085" y="500" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cText" value="Quando usar&lt;br&gt;- Voce ja usa Control Tower com contas separadas e o BFF&lt;br&gt;&#160; nao vai morar na mesma conta dos servicos de dominio.&lt;br&gt;- Precisa de autorizacao por identidade (IAM) entre contas,&lt;br&gt;&#160; sem VPC peering e sem CIDR sobreposto.&lt;br&gt;&lt;br&gt;VPC Lattice&lt;br&gt;- Rede de servicos gerenciada, policy de auth por servico,&lt;br&gt;&#160; roteamento por path/header, funciona cross-VPC e cross-conta.&lt;br&gt;&lt;br&gt;PrivateLink&lt;br&gt;- Mais maduro e previsivel: NLB + VPC Endpoint Service.&lt;br&gt;- Trafego nunca sai da rede AWS, exposicao unidirecional.&lt;br&gt;&lt;br&gt;Mesmo aqui o servico de dominio continua SEM API Gateway proprio." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="600" width="415" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d1" value="API Gateway do BFF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7F1;strokeColor=#BC1356;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1585" y="285" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" value="API Gateway fundos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#C7131F;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d3" value="API Gateway cdb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#C7131F;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1655" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d4" value="API Gateway renda-fixa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#C7131F;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="400" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dText" value="Por que evitar&lt;br&gt;- Dois gateways em serie = dobro de latencia, dobro de custo por&lt;br&gt;&#160; requisicao e dois lugares para configurar throttling/auth.&lt;br&gt;- Autenticacao duplicada: ou voce revalida o JWT (custo) ou&lt;br&gt;&#160; confia cegamente no upstream (risco).&lt;br&gt;- Cada novo contexto (cdb, renda-fixa) vira um novo gateway&lt;br&gt;&#160; para versionar, monitorar e documentar.&lt;br&gt;- Superficie de exposicao maior: se um gateway ficar publico por&lt;br&gt;&#160; engano, o servico de dominio fica acessivel sem passar pelo BFF.&lt;br&gt;&lt;br&gt;Excecao legitima&lt;br&gt;- Se o servico de fundos precisar ser consumido por terceiros&lt;br&gt;&#160; com contrato/quotas proprias (open API para parceiros), ai sim&lt;br&gt;&#160; um gateway dedicado se justifica - mas como produto separado,&lt;br&gt;&#160; nao como intermediario do BFF." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1500" y="500" width="415" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ea1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea2" value="VPC Link" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#232F3E;" edge="1" parent="1" source="a2" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea3" value="HTTPS + JWT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#232F3E;" edge="1" parent="1" source="a3" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="a4" target="a5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#879196;dashed=1;" edge="1" parent="1" source="a4" target="a6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#879196;dashed=1;" edge="1" parent="1" source="a4" target="a7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eb1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="b1" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="b2" target="b3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#879196;dashed=1;" edge="1" parent="1" source="b2" target="b4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="c1" target="c2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;" edge="1" parent="1" source="c2" target="c3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ed1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C7131F;" edge="1" parent="1" source="d1" target="d2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ed2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C7131F;" edge="1" parent="1" source="d1" target="d3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ed3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C7131F;" edge="1" parent="1" source="d1" target="d4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="p2foot" value="Resumo: o servico de Fundos NAO precisa de API Gateway. Ele precisa de um endpoint privado (ALB interno) + autorizacao de rede (SG) + validacao do JWT propagado pelo BFF." style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#4F6B0D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1055" width="1890" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="pagina3" name="3 - Fluxo da requisicao + Observabilidade Datadog">
+    <mxGraphModel dx="1800" dy="1100" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="p3title" value="Fluxo ponta a ponta e observabilidade com Datadog (trace unico do cliente ate a API do provedor)" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1600" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f0" value="Cliente&lt;br&gt;(RUM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEFEF;strokeColor=#545B64;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" value="API Gateway&lt;br&gt;(BFF)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7F1;strokeColor=#BC1356;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="BFF&lt;br&gt;ECS Fargate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="ALB interno&lt;br&gt;/fundos/*" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#5A30B5;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="App Java - Fundos&lt;br&gt;caso de uso / dominio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="940" y="200" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" value="ACL / Adapter&lt;br&gt;por provedor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7E6;strokeColor=#ED7100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" value="lib provider-clients&lt;br&gt;HTTP client + mTLS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8FF;strokeColor=#3334B9;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="200" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" value="NAT Gateway&lt;br&gt;EIP fixo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#5A30B5;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="200" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" value="4 APIs externas&lt;br&gt;dos provedores" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEFEF;strokeColor=#545B64;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1840" y="200" width="160" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ef1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f0" target="f1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f1" target="f2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f2" target="f3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f3" target="f4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f4" target="f5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f5" target="f6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f6" target="f7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#232F3E;strokeWidth=2;" edge="1" parent="1" source="f7" target="f8"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="traceBar" value="TRACE UNICO - headers propagados: traceparent (W3C) + x-datadog-trace-id / x-datadog-parent-id | tags: env, service, version, x-correlation-id, idempotency-key" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;dashed=1;fontSize=11;fontStyle=1;fontColor=#432466;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="1940" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ddBox3" value="Datadog (SaaS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;strokeWidth=3;verticalAlign=top;align=center;spacingTop=8;fontColor=#632CA6;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="420" width="1000" height="620" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dd1" value="APM / Traces&lt;br&gt;&lt;br&gt;dd-java-agent injetado via init container&lt;br&gt;(datadog/dd-lib-java-init) + volume compartilhado&lt;br&gt;&lt;br&gt;JAVA_TOOL_OPTIONS=&lt;br&gt;-javaagent:/dd/dd-java-agent.jar&lt;br&gt;&lt;br&gt;Instrumenta automaticamente: HTTP server,&lt;br&gt;JDBC (Aurora), AWS SDK, SQS/EventBridge e&lt;br&gt;os 4 clients HTTP da lib provider-clients" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="85" y="465" width="310" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="dd2" value="Logs&lt;br&gt;&lt;br&gt;FireLens (aws-for-fluent-bit) com output&lt;br&gt;datadog direto do task - sem passar por&lt;br&gt;CloudWatch Logs (menos custo e menos hop)&lt;br&gt;&lt;br&gt;DD_LOGS_INJECTION=true injeta dd.trace_id&lt;br&gt;no log JSON = clique do trace para o log&lt;br&gt;&lt;br&gt;Mascarar CPF, dados de conta e payload&lt;br&gt;do provedor antes de sair do container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="410" y="465" width="310" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="dd3" value="Metricas&lt;br&gt;&lt;br&gt;Datadog Agent sidecar (ECS_FARGATE=true)&lt;br&gt;DD_API_KEY vindo do Secrets Manager&lt;br&gt;&lt;br&gt;DogStatsD para metricas de negocio:&lt;br&gt;ordens_por_status, divergencias_abertas,&lt;br&gt;latencia_por_provedor, itens_em_dlq&lt;br&gt;&lt;br&gt;AWS Integration coleta ALB, Aurora, SQS,&lt;br&gt;EventBridge, API Gateway e Fargate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="735" y="465" width="310" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="dd4" value="Database Monitoring&lt;br&gt;&lt;br&gt;Aurora PostgreSQL: query samples,&lt;br&gt;planos de execucao e locks correlacionados&lt;br&gt;com o trace da requisicao" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="85" y="715" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dd5" value="Synthetics&lt;br&gt;&lt;br&gt;Teste de API no endpoint publico do BFF&lt;br&gt;e monitor de disponibilidade por provedor&lt;br&gt;externo - detecta queda do parceiro antes&lt;br&gt;do cliente reclamar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="410" y="715" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dd6" value="Unified Service Tagging&lt;br&gt;&lt;br&gt;DD_ENV=prd | DD_SERVICE=fundos&lt;br&gt;DD_VERSION=&lt;git-sha&gt;&lt;br&gt;&lt;br&gt;Mesmo padrao para cdb e renda-fixa:&lt;br&gt;dashboards e monitores por servico saem prontos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#632CA6;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="735" y="715" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dd7" value="SLOs sugeridos: p95 do BFF por rota | taxa de erro 5xx por target group | latencia e taxa de timeout POR PROVEDOR externo | idade da mensagem mais antiga na fila | itens em DLQ | quantidade de ordens em estado Divergente | atraso da conciliacao" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE0FF;strokeColor=#632CA6;verticalAlign=middle;align=left;spacingLeft=10;fontSize=11;fontColor=#432466;" vertex="1" parent="1">
+          <mxGeometry x="85" y="880" width="960" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dd8" value="Circuit breaker aberto em um provedor = 1 alerta e degradacao controlada, nao uma queda geral. O estado do breaker vai como metrica custom para o Datadog." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#632CA6;" vertex="1" parent="1">
+          <mxGeometry x="85" y="960" width="960" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="taskDetail" value="Composicao do ECS Task (Fargate) - servico fundos" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF3EA;strokeColor=#ED7100;strokeWidth=3;verticalAlign=top;align=center;spacingTop=8;fontColor=#B35B00;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="420" width="890" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" value="1. init container: dd-lib-java-init&lt;br&gt;copia o dd-java-agent.jar para um volume compartilhado" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#879196;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="470" width="830" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" value="2. app (essential=true): imagem Java do ECR&lt;br&gt;Spring Boot, hexagonal, modulo Fundos, porta 8080&lt;br&gt;depende da lib provider-clients (CodeArtifact) - 4 clients HTTPS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5CC;strokeColor=#ED7100;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="550" width="830" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" value="3. datadog-agent (sidecar): ECS_FARGATE=true, DD_APM_ENABLED=true,&lt;br&gt;DD_APM_NON_LOCAL_TRAFFIC=true, DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true&lt;br&gt;DD_API_KEY via secrets do task definition (Secrets Manager)&lt;br&gt;reserva ~0.25 vCPU / 0.5 GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="650" width="830" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" value="4. log-router (FireLens / Fluent Bit): logDriver=awsfirelens, output datadog&lt;br&gt;tags de servico e ambiente aplicadas na origem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#632CA6;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="765" width="830" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" value="Task Role (IAM): acesso a Aurora, DynamoDB, S3, EventBridge, SQS, Secrets Manager&lt;br&gt;Execution Role: pull do ECR + leitura dos secrets na inicializacao&lt;br&gt;Nenhuma credencial de provedor externo dentro da imagem - tudo em runtime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEC;strokeColor=#C7131F;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="845" width="830" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" value="Este task definition e o BLUEPRINT: para CDB e Renda Fixa muda a imagem,&lt;br&gt;o DD_SERVICE e o target group. Sidecars, roles e observabilidade sao identicos." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#B35B00;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="945" width="830" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
